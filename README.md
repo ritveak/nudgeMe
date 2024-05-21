@@ -3,14 +3,14 @@
 ### Planned Features :
 
 ## **V0**
-
-- [ ] **Data entry for categories:**
+- [ ] **Category page** 
+- [ ] **Data entry for categories:** (on tap of +)
   - **Title**
   - **Effect** (positive or negative)
   - **Color**
-  - **Add option to choose a parent** from existing categories.
+  - **Add option to choose a parent** (from existing categories)
 - [ ] **Show existing categories** with color and arrow mark defining their effect.
-- [ ] **Add edit and delete functionality**.
+
 
 ## **V1**
 
@@ -23,6 +23,7 @@
     - **Ask what they did for last n minutes**.
     - **Ask what they plan to do for next n minutes**.
 - [ ] **Show cumulative results** in a chart.
+- [ ] **Add edit and delete functionality in categories page**.
 
 ## **V2**
 
