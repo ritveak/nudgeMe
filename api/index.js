@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb+srv://ritveak:ritveak@cluster0.hbrhuta.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(()=>{
+mongoose.connect("mongo url").then(()=>{
     console.log("Connected to Mongo")
 }).catch((error)=>{
     console.log("Error connecting to Mongo" +error);
