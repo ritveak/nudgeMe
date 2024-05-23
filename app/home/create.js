@@ -39,20 +39,14 @@ const create = () => {
 
   const handleAddCategory = async () => {
     const newCategory = {
-      id: "a",
-      // id: (categories.length + 1).toString(),
+      id: (categories.length + 1).toString(),
       title,
       effect,
       color,
       parent,
     };
     const newArr = [...categories,newCategory];
-    // console.log(newArr);
-    // const jsonv = JSON.stringify(newArr);
-    // console.log(categories);
     setCategories(newArr);
-    // console.log(categories);
-    // console.log(jsonv != null ? JSON.parse(jsonv) : []);
     await AsyncStorage.setItem('@categories', JSON.stringify(newArr));
   };
 
@@ -71,6 +65,7 @@ const create = () => {
         onValueChange={(itemValue) => setEffect(itemValue)}
       >
         <Picker.Item label="Positive" value="positive" />
+        <Picker.Item label="Neutral" value="neutral" />
         <Picker.Item label="Negative" value="negative" />
       </Picker>
       <TextInput
@@ -88,11 +83,7 @@ const create = () => {
         {categories.map((category) => (
           <Picker.Item key={category.id} label={category.title} value={category.id} />
         ))}
-      </Picker>
-
-
-          {/* <View> <Text>{JSON.stringify(categories)}</Text> </View> */}
-  
+      </Picker>  
       <Button title="Add Category" onPress={handleAddCategory} />
       <Button title="Clear All " onPress={clearData} />
       <Button

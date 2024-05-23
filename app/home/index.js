@@ -15,10 +15,7 @@ const index = () => {
     const loadCategories = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem('@categories');
-        // clearData();
         const storedCategories = jsonValue != null || jsonValue == '' ? JSON.parse(jsonValue) : [];
-        // console.log(storedCategories);
-        // alert(jsonValue);
         setCategories(storedCategories);
       } catch (error) {
         console.error('Error loading categories:', error);
@@ -38,7 +35,7 @@ const index = () => {
         renderItem={({ item }) => (
           <View style={[styles.categoryItem, { backgroundColor: item.color }]}>
             <Text style={styles.categoryTitle}>{item.title}</Text>
-            <Text>{item.effect === 'positive' ? '🙂' : '🙁'}</Text>
+            <Text>  {item.effect === 'positive' ? '🙂' : item.effect === 'negative' ? '🙁' : '😐'}</Text>
           </View>
         )}
       />
