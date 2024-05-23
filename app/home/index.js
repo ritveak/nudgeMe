@@ -4,20 +4,26 @@ import { AntDesign } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const index = () => {
     const router = useRouter();
-    const { newCategories } = useLocalSearchParams();
-    const initialCategories = [
-      { id: '1', title: 'Learning', effect: 'positive', color: '#3498db', parent: null },
-    ];
-  
-    const [categories, setCategories] = useState(initialCategories);
-  
+    const [categories, setCategories] = useState([]);
     useEffect(() => {
-      if (newCategories) {
-        setCategories(JSON.parse(newCategories));
+      loadCategories();
+    }, []);
+    const loadCategories = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('@categories');
+        // clearData();
+        const storedCategories = jsonValue != null || jsonValue == '' ? JSON.parse(jsonValue) : [];
+        // console.log(storedCategories);
+        // alert(jsonValue);
+        setCategories(storedCategories);
+      } catch (error) {
+        console.error('Error loading categories:', error);
       }
-    }, [newCategories]);
+    };
   return (
     <ScrollView style={{flex:1, backgroundColor:"white",padding :10}}>
         <View style={{flexDirection :"row", alignItems:"center", justifyContent:"space-between"}}>
@@ -38,7 +44,7 @@ const index = () => {
       />
       <Button
         title="Add Category"
-        onPress={() => router.push('/home/create', { categories: JSON.stringify(categories) })}
+        onPress={() => router.push('/home/create')}
       />
     </ScrollView>
   )

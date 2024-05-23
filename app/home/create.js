@@ -1,43 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Picker, Button, StyleSheet } from 'react-native';
-import { useRouter, useLocalSearchParams } from 'expo-router';
+import { useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const create = () => {
     const router = useRouter();
-  const { categories } = useLocalSearchParams();
-  let parsedCategories = [];
-
-  try {
-    console.log('unparsed categories:', categories);
-
-    parsedCategories = categories ? JSON.parse(categories) : [];
-    console.log('parsed categories:', parsedCategories);
-
-  } catch (error) {
-    console.error('Error parsing categories:', error);
-  }
-
+    const [categories, setCategories] = useState([]);
+    useEffect(() => {
+      loadCategories();
+    }, []);
+    const loadCategories = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('@categories');
+        // clearData();
+        const storedCategories = jsonValue != null || jsonValue == '' ? JSON.parse(jsonValue) : [];
+        console.log(storedCategories);
+        // alert(jsonValue);
+        setCategories(storedCategories);
+      } catch (error) {
+        console.error('Error loading categories:', error);
+      }
+    };
+    const clearData = async () => {
+      await AsyncStorage.removeItem('@categories').then(()=>{
+        console.log("delteddddddd");
+        console.log(categories);
+        loadCategories();
+      }
+      );  
+    };
+  
+  
+   
   const [title, setTitle] = useState('');
   const [effect, setEffect] = useState('positive');
   const [color, setColor] = useState('#3498db');
   const [parent, setParent] = useState(null);
 
-  const handleAddCategory = () => {
+  const handleAddCategory = async () => {
     const newCategory = {
-      id: (parsedCategories.length + 1).toString(),
+      id: "a",
+      // id: (categories.length + 1).toString(),
       title,
       effect,
       color,
       parent,
     };
-    
-    // Add the new category to the categories array
-    const updatedCategories = [...parsedCategories, newCategory];
-
-    // Navigate back to Categories screen with the updated categories list
-    router.push({
-      pathname: '/categories',
-      params: { newCategories: JSON.stringify(updatedCategories) }
-    });
+    const newArr = [...categories,newCategory];
+    // console.log(newArr);
+    // const jsonv = JSON.stringify(newArr);
+    // console.log(categories);
+    setCategories(newArr);
+    // console.log(categories);
+    // console.log(jsonv != null ? JSON.parse(jsonv) : []);
+    await AsyncStorage.setItem('@categories', JSON.stringify(newArr));
   };
 
     return (
@@ -69,11 +85,20 @@ const create = () => {
         onValueChange={(itemValue) => setParent(itemValue)}
       >
         <Picker.Item label="None" value={null} />
-        {parsedCategories.map((category) => (
+        {categories.map((category) => (
           <Picker.Item key={category.id} label={category.title} value={category.id} />
         ))}
       </Picker>
+
+
+          {/* <View> <Text>{JSON.stringify(categories)}</Text> </View> */}
+  
       <Button title="Add Category" onPress={handleAddCategory} />
+      <Button title="Clear All " onPress={clearData} />
+      <Button
+        title="Go Back"
+        onPress={() => router.push('/home')}
+      />
     </View>
     )
 }
