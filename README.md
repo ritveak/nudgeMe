@@ -3,30 +3,29 @@
 ### Planned Features :
 
 ## **V0**
-- [ ] **Category page** 
-- [ ] **Data entry for categories:** (on tap of +)
+- [x] **Category page** 
+- [x] **Data entry for categories:** (on tap of +)
   - **Title**
   - **Effect** (positive or negative)
   - **Color**
   - **Add option to choose a parent** (from existing categories)
-- [ ] **Show existing categories** with color and arrow mark defining their effect.
+- [x] **Show existing categories** with emoji showing their effect.
 
 
 ## **V1**
 
-- [ ] **Hardcode inputs** like frequency and active time.
+
 - [ ] **Send notification**:
-  - [ ] **If first notification:**
-    - **Ask what user plans on doing** for next **n** minutes.
-    - **Let them choose from categories**, show a tree of category with search option.
-  - [ ] **If not first notification:**
-    - **Ask what they did for last n minutes**.
-    - **Ask what they plan to do for next n minutes**.
-- [ ] **Show cumulative results** in a chart.
+      **Ask what they did for last n minutes and what they plan to do for next n minutes**.
+- [ ] **Store results**
+- [ ] **Add a color picker** for category creation screen and show proper color in category screen.
 - [ ] **Add edit and delete functionality in categories page**.
 
 ## **V2**
-
+- [ ] **If first notification:**
+    - **Ask what user plans on doing** for next **n** minutes.
+- [ ] **Categories in tree format in dropdowns and screen with search option.**
+- [ ] **Hardcode inputs** like frequency and active time and show notif only during those periods
 - [ ] **Take inputs from user** for active time, frequency.
 - [ ] **Take daily goals** in the morning.
 - [ ] **Show wrong predictions**.
@@ -34,8 +33,17 @@
 - [ ] **Show line chart** for comparison.
 
 ## **V3**
+- [ ] **Add side bar to show categories, data, etc.**.
 
-- [ ] **Snooze button**.
+- [ ] **Add screen to take in proverbs or things to keep reminding like lines from book**.
+- [ ] **Randomly show the item in notifications**
+- [ ] **Allow user to like it, and store the likes**
+
+
+## **V4**
+
+- [ ] **Probablity of showing liked items should be high, but only after 5 days**.
+- [ ] **Snooze button for no notification for x hours**.
 - [ ] **Auto hide notification** or smartly retry.
 - [ ] **Suggest daily goal** based on day and previous data.
 - [ ] **Optimize n** so that deep work is not ruined.
