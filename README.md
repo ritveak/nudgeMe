@@ -34,9 +34,9 @@
 
 ## **V3**
 - [ ] **Add side bar to show categories, data, etc.**.
-
-- [ ] **Add screen to take in proverbs or things to keep reminding like lines from book**.
+- [ ] **Add screen for what motivates you, take in proverbs or things to keep reminding like lines from book, part of song, or linkedinPost or people**.
 - [ ] **Randomly show the item in notifications**
+- [ ] **Ask user about the mood and show things accordingly if required?**
 - [ ] **Allow user to like it, and store the likes**
 
 
